@@ -2,7 +2,11 @@ import { useState } from "react";
 import UserProfileModals from "./UserProfileModals";
 import { PiUserCircleFill } from "react-icons/pi";
 
-const UserProfileNav: React.FC = ( profileType ) => {
+interface Props {
+  profileType: number;
+}
+
+const UserProfileNav: React.FC<Props> = ( {profileType} ) => {
   const [showModals, setShowModals] = useState(false);
 
   const closeModals = () => setShowModals(false);
