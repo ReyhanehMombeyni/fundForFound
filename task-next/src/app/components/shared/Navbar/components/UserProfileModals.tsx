@@ -7,13 +7,17 @@ import { IoSettingsSharp } from "react-icons/io5";
 import { TbLogout } from "react-icons/tb";
 import { IoAddCircleOutline } from "react-icons/io5";
 
-const UserProfileModals = ({ closeModals }) => {
+interface Props {
+    closeModals: () => void
+}
+
+const UserProfileModals: React.FC<Props> = ({ closeModals }) => {
   return (
     <div className="modal modal-open modal-top py-5">
       <div className="modal-box bg-white w-85 absolute top-[-20px] right-0 p-5">
         <div className="flex justify-between items-center pb-2 mx-2 mb-3 border-b border-solid border-gray-100">
           <div className="text-sm flex items-center gap-2">
-            <UserProfileNav />
+            <UserProfileNav profileType={2}  />
             <div>
                 <p className="font-medium">username</p>
                 <span className="font-extralight">email@gmail.com</span>

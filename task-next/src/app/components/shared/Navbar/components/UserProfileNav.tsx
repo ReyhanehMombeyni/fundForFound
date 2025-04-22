@@ -7,9 +7,10 @@ interface Props {
 }
 
 const UserProfileNav: React.FC<Props> = ( {profileType} ) => {
-  const [showModals, setShowModals] = useState(false);
+  const [showModals, setShowModals] = useState<boolean>(false);
 
-  const closeModals = () => setShowModals(false);
+  const closeModals: ()=>void = () => setShowModals(false);
+
   return (
     <>
       {profileType === 1 ? (
