@@ -4,11 +4,7 @@ interface buttonType {
 }
 const Button:React.FC<buttonType> = ({btnType, text}) => {
   return (
-    <>
-    {
-      btnType=== 1 && <button className='btn btn-primary px-5 rounded-lg'>{text}</button>
-    }
-    </>
+    <button className={`btn px-5 rounded-lg ${btnType===1 ? "btn-primary" : "btn-outline btn-primary"}`}>{text}</button>
   )
 }
 
