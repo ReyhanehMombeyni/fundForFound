@@ -8,17 +8,17 @@ import { MdEmail } from "react-icons/md";
 const Footer = () => {
   return (
     <div className="bg-[#F5F5F5] text-gray-600">
-      <div className="py-10 pl-40 flex gap-30 items-start justify-start max-md:px-20 max-md:gap-20 max-sm:px-10 max-sm:gap-10">
+      <div className="py-10 pl-40 flex gap-30 items-start justify-start max-md:px-20 max-md:gap-20 max-sm:px-10 max-sm:gap-5">
         <div>
           <h1 className="font-medium pb-5">ABOUT</h1>
-          <ul className="flex flex-col gap-2 text-sm">
+          <ul className="flex flex-col gap-2 text-sm max-sm:text-xs">
             <li>About us</li>
             <li>Contact us</li>
           </ul>
         </div>
         <div>
           <h1 className="font-medium pb-5">RESOURSES</h1>
-          <ul className="flex flex-col gap-2 text-sm">
+          <ul className="flex flex-col gap-2 text-sm max-sm:text-xs">
             <li>Blog</li>
             <li>How 3F works</li>
             <li>Help & support</li>
@@ -26,7 +26,7 @@ const Footer = () => {
         </div>
         <div>
           <h1 className="font-medium pb-5">CONTRIBUTING</h1>
-          <ul className="flex flex-col gap-2 text-sm">
+          <ul className="flex flex-col gap-2 text-sm max-sm:text-xs">
             <li>Brand & Organizations</li>
             <li>Pricing</li>
           </ul>
