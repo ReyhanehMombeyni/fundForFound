@@ -7,9 +7,11 @@ import { IoSearchOutline, IoMenu } from "react-icons/io5";
 import Modal from "./components/Modal";
 import UserProfileNav from "./components/UserProfileNav";
 import CloseButton from "../CloseButton";
+import { menuNavbar } from "@/utils/constants";
+import Link from "next/link";
 
 const Navbar: React.FC = () => {
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState<boolean>(false);
   return (
     <>
       <nav className="navbar shadow-sm grid grid-cols-12 items-center text-gray-600 px-20 py-3 max-lg:px-15 max-md:px-10">
@@ -18,10 +20,11 @@ const Navbar: React.FC = () => {
         </div>
         <div className="col-span-6 pr-15 max-lg:pr-5 max-lg:col-span-7 max-md:hidden">
           <ul className="flex justify-end gap-5 font-medium">
-            <li>Home</li>
-            <li>Explore</li>
-            <li>About us</li>
-            <li>Help & Support</li>
+            {
+              menuNavbar.map(item => (<li key={item.text}>
+                <Link href={item.href}>{item.text}</Link>
+              </li>))
+            }
           </ul>
         </div>
         <div className="col-span-4 max-md:col-span-6">
