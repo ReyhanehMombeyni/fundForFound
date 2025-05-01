@@ -100,7 +100,7 @@ export default function GoogleCallbackPage() {
           );
   
           const loginRes = await fetch(
-            `${env.NEXT_PUBLIC_API_URL}/api/auth/local`,
+            "/api/auth/logIn",
             {
               method: "POST",
               headers: {
@@ -111,11 +111,9 @@ export default function GoogleCallbackPage() {
                 password: env.NEXT_PUBLIC_GOOGLE_USER_PASSWORD,
               }),
             }
-          );
-          const loginData = await loginRes.json();
-  
-          if (loginData.jwt) {
-            localStorage.setItem("token", loginData.jwt);
+          );  
+          
+          if (loginRes.ok) {
             router.push("/auth/dashboard");
           } else {
             console.error("Login failed");

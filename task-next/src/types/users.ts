@@ -31,3 +31,12 @@ export interface RegisterData {
     id: number;
   };
 }
+
+export interface userProfile {
+  id: number;
+  username: string;
+  email: string;
+}
+export interface UserProfileProps {
+  user: userProfile | null;
+}

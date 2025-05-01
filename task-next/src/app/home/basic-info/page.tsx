@@ -1,8 +1,7 @@
-'use client';
-
+'use client'
 const page = () => {
   return (
-    <div>hiiiii</div>
+    <div>basic page</div>
   )
 }
 

@@ -1,3 +1,5 @@
+'use client'
+
 interface buttonType {
     btnType: number;
     text: string;

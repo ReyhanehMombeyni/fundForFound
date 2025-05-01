@@ -1,13 +1,13 @@
-'use client'
+'use client';
+
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
-import axios, { AxiosError } from 'axios';
-import { env } from '@/../lib/env';
 import { useMutation } from '@tanstack/react-query';
 import { LoginResponse, userLogin } from '@/types/users';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Link from 'next/link';
+import GoogleButton from '@/app/components/shared/GoogleButton';
 
 const schema= yup.object({
     identifier: yup.string().required().min(3),
@@ -21,13 +21,21 @@ const FormLogin = () => {
     resolver: yupResolver(schema),
     mode:'onChange'
   });
-  const { mutate }= useMutation<LoginResponse, AxiosError , userLogin>({
-    mutationFn: async (user) => {
-        const res= await axios.post<LoginResponse>(`${env.NEXT_PUBLIC_API_URL}/api/auth/local`, user);
-        return res.data;
+  const { mutate }= useMutation<LoginResponse, Error , userLogin>({
+    mutationFn: async (user: userLogin) => {
+      const res= await fetch("/api/auth/logIn", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(user),
+      })
+      if (!res.ok) {
+        throw new Error('Login is not ok.');
+      }
+      return res.json();
     },
-    onSuccess: (data) => {
-      localStorage.setItem('token', data.jwt);
+    onSuccess: () => {
       router.push('/auth/dashboard');
     },
     onError: (error) => {
@@ -35,29 +43,13 @@ const FormLogin = () => {
     }
   })
 
-  const handleGoogleLogin = (): void => {
-      const redirectUri = `${env.NEXT_PUBLIC_FRONT_URL}/auth/google/callback`;
-  
-      const params = new URLSearchParams({
-        response_type: 'code',
-        client_id: env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
-        redirect_uri: redirectUri,
-        scope: ['openid', 'profile', 'email'].join(' '),
-        access_type: 'offline',
-        prompt: 'select_account',
-      });
-  
-      const url = `https://accounts.google.com/o/oauth2/v2/auth?${params.toString()}`;
-      window.location.href = url;
-  };
-
   const formSubmit = async(user: userLogin) => {
     mutate(user);
   }
 
   return (
     <div>
-      <button className='btn' onClick={handleGoogleLogin}>Continue With google</button>
+      <GoogleButton />
       <div className='py-10 text-gray-500'>
         -------------------- or --------------------
       </div>
