@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
-import { env } from "../../../../lib/env";
 import { NextResponse } from "next/server";
+import { env } from "../../../../lib/env";
 
 export async function GET(): Promise<NextResponse> {
   
@@ -27,7 +27,7 @@ export async function GET(): Promise<NextResponse> {
     return NextResponse.json({ isLoggedInInfo: true, userInfo: { id, username, email } });
 
   } catch (error) {
-    console.error("خطا در گرفتن اطلاعات کاربر:", error);
+    console.error(error);
     return NextResponse.json({ isLoggedIn: false, user: null });
   }
 }

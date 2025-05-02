@@ -40,3 +40,12 @@ export interface userProfile {
 export interface UserProfileProps {
   user: userProfile | null;
 }
+
+export interface ForgotPasswordForm {
+  email: string;
+}
+
+export interface ResetPasswordForm {
+  password: string;
+  passwordConfirmation: string;
+}

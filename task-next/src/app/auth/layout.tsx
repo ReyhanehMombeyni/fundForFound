@@ -1,6 +1,6 @@
 "use client";
 
-import Footer from "@/app/components/shared/Footer";
+import Navbar from "@/app/components/shared/Navbar/Navbar";
 
 const layout = ({
   children,
@@ -9,8 +9,8 @@ const layout = ({
 }>) => {
   return (
     <>
+      <Navbar />
       {children}
-      <Footer />
     </>
   );
 };

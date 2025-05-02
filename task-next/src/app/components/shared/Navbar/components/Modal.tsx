@@ -32,8 +32,8 @@ const Modal = () => {
           ))}
         </ul>
         <div className="mt-5 w-full flex flex-col gap-2">
-          <Button btnType={2} text="Login/Signup" />
-          <Button btnType={1} text="Start" />
+          <Link href="/auth/logIn" className="btn px-5 rounded-lg btn-primary">Login/Signup</Link>
+          <Link href="/home/basic-info" className="btn px-5 rounded-lg btn-primary btn-outline">Start</Link>
         </div>
       </div>
     </div>

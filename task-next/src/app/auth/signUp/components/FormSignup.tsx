@@ -47,9 +47,9 @@ const FormSignup = () => {
   };
 
   return (
-    <div>
+    <div className="pb-20">
       <GoogleButton />
-      <div className="py-10">or</div>
+      <div className="py-10">-------------------- or --------------------</div>
       <div className="w-80">
         <form
           onSubmit={handleSubmit(formSubmit)}

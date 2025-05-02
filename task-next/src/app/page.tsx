@@ -34,7 +34,7 @@ export default function Home() {
             </p>
           </div>
           <div className="flex flex-col text-center gap-2 w-full">
-            <button className="btn px-5 rounded-lg btn-primary"><Link href="/home/basic-info">Start</Link></button>
+            <Link href="/home/basic-info" className="btn px-5 rounded-lg btn-primary">Start</Link>
             <button className="text-purple-500 cursor-pointer">Learn more</button>
           </div>
         </div>
