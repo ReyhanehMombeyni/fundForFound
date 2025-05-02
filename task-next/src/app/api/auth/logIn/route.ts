@@ -12,7 +12,6 @@ export async function POST(req: NextRequest) {
       },
       body: JSON.stringify(body),
     });
-    console.log(res);
 
     if (!res.ok) {
       const translatedMessage = "Invalid identifier or password";

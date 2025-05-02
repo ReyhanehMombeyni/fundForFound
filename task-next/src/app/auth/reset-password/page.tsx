@@ -55,6 +55,7 @@ const ResetPassword = () => {
 
     if (res.ok) {
       setMessageSuccess("Password Changed.");
+      setError("");
     } else {
       setError(data?.error?.message || "Error change password.");
     }
