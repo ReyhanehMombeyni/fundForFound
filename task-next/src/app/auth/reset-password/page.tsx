@@ -7,7 +7,6 @@ import { env } from "../../../../lib/env";
 import { useEffect, useState } from "react";
 import FundTitrComp from "@/app/components/shared/FundTitrComp";
 import { ResetPasswordForm } from "@/types/users";
-import { useSearchParams } from "next/navigation";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import Link from "next/link";
 
