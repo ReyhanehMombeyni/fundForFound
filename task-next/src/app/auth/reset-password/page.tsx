@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { env } from "../../../../lib/env";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FundTitrComp from "@/app/components/shared/FundTitrComp";
 import { ResetPasswordForm } from "@/types/users";
 import { useSearchParams } from "next/navigation";
@@ -19,12 +19,18 @@ const schema = yup.object({
     .required(),
 });
 const ResetPassword = () => {
-  const params = useSearchParams();
-  const code = params.get("code") || "";
 
   const [MessageSuccess, setMessageSuccess] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [code, setCode] = useState<string | null>(null); 
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      setCode(params.get("code"));
+    }
+  }, []);
 
   const {
     register,
