@@ -51,6 +51,12 @@
       "relation": "manyToOne",
       "target": "api::country.country",
       "inversedBy": "brand_orgs"
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tag.tag",
+      "mappedBy": "brand_orgs"
     }
   }
 }
