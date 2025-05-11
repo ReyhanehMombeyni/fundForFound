@@ -4,7 +4,8 @@
   "info": {
     "singularName": "brand-org",
     "pluralName": "brand-orgs",
-    "displayName": "BrandOrg"
+    "displayName": "BrandOrg",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -57,6 +58,28 @@
       "relation": "manyToMany",
       "target": "api::tag.tag",
       "mappedBy": "brand_orgs"
+    },
+    "social_medias": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::social-media.social-media",
+      "inversedBy": "brand_orgs"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "brand_orgs"
+    },
+    "isConfirmed": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "confirmationToken": {
+      "type": "text",
+      "required": true,
+      "unique": true
     }
   }
 }
