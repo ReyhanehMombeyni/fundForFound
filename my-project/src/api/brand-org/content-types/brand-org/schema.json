@@ -59,12 +59,6 @@
       "target": "api::tag.tag",
       "mappedBy": "brand_orgs"
     },
-    "social_medias": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::social-media.social-media",
-      "inversedBy": "brand_orgs"
-    },
     "user": {
       "type": "relation",
       "relation": "manyToOne",
@@ -80,6 +74,12 @@
       "type": "text",
       "required": true,
       "unique": true
+    },
+    "brand_socials": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::brand-social.brand-social",
+      "mappedBy": "brand_org"
     }
   }
 }

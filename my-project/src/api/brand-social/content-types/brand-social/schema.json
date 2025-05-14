@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "brand_socials",
+  "info": {
+    "singularName": "brand-social",
+    "pluralName": "brand-socials",
+    "displayName": "BrandSocial"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "customUrl": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "social_media": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::social-media.social-media",
+      "inversedBy": "brand_socials"
+    },
+    "brand_org": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::brand-org.brand-org",
+      "inversedBy": "brand_socials"
+    }
+  }
+}

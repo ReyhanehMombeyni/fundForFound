@@ -392,6 +392,10 @@ export interface ApiBrandOrgBrandOrg extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
+    brand_socials: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::brand-social.brand-social'
+    >;
     category: Schema.Attribute.Relation<'manyToOne', 'api::category.category'>;
     confirmationToken: Schema.Attribute.Text &
       Schema.Attribute.Required &
@@ -417,10 +421,6 @@ export interface ApiBrandOrgBrandOrg extends Struct.CollectionTypeSchema {
         };
       }>;
     publishedAt: Schema.Attribute.DateTime;
-    social_medias: Schema.Attribute.Relation<
-      'manyToMany',
-      'api::social-media.social-media'
-    >;
     subcategory: Schema.Attribute.Relation<
       'manyToOne',
       'api::subcategory.subcategory'
@@ -433,6 +433,48 @@ export interface ApiBrandOrgBrandOrg extends Struct.CollectionTypeSchema {
       'manyToOne',
       'plugin::users-permissions.user'
     >;
+  };
+}
+
+export interface ApiBrandSocialBrandSocial extends Struct.CollectionTypeSchema {
+  collectionName: 'brand_socials';
+  info: {
+    displayName: 'BrandSocial';
+    pluralName: 'brand-socials';
+    singularName: 'brand-social';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    brand_org: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::brand-org.brand-org'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    customUrl: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::brand-social.brand-social'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    social_media: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::social-media.social-media'
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
   };
 }
 
@@ -529,6 +571,7 @@ export interface ApiCountryCountry extends Struct.CollectionTypeSchema {
 export interface ApiSocialMediaSocialMedia extends Struct.CollectionTypeSchema {
   collectionName: 'social_medias';
   info: {
+    description: '';
     displayName: 'SocialMedia';
     pluralName: 'social-medias';
     singularName: 'social-media';
@@ -542,13 +585,22 @@ export interface ApiSocialMediaSocialMedia extends Struct.CollectionTypeSchema {
     };
   };
   attributes: {
-    brand_orgs: Schema.Attribute.Relation<
-      'manyToMany',
-      'api::brand-org.brand-org'
+    baseUrl: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    brand_socials: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::brand-social.brand-social'
     >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    icon: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -566,14 +618,6 @@ export interface ApiSocialMediaSocialMedia extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    url: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.Unique &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
   };
 }
 
@@ -1174,6 +1218,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::brand-org.brand-org': ApiBrandOrgBrandOrg;
+      'api::brand-social.brand-social': ApiBrandSocialBrandSocial;
       'api::category.category': ApiCategoryCategory;
       'api::country.country': ApiCountryCountry;
       'api::social-media.social-media': ApiSocialMediaSocialMedia;

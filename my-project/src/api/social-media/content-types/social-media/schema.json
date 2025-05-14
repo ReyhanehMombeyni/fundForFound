@@ -4,7 +4,8 @@
   "info": {
     "singularName": "social-media",
     "pluralName": "social-medias",
-    "displayName": "SocialMedia"
+    "displayName": "SocialMedia",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -25,7 +26,7 @@
         }
       }
     },
-    "url": {
+    "baseUrl": {
       "type": "string",
       "required": true,
       "unique": true,
@@ -35,11 +36,19 @@
         }
       }
     },
-    "brand_orgs": {
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "brand_socials": {
       "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::brand-org.brand-org",
-      "mappedBy": "social_medias"
+      "relation": "oneToMany",
+      "target": "api::brand-social.brand-social",
+      "mappedBy": "social_media"
     }
   }
 }
