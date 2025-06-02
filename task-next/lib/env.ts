@@ -9,6 +9,8 @@ export const env = {
       .NEXT_PUBLIC_GOOGLE_USER_PASSWORD as string,
     NEXT_PUBLIC_STRAPI_ADMIN_TOKEN: process.env
       .NEXT_PUBLIC_STRAPI_ADMIN_TOKEN as string,
+    JWT_SECRET: process.env
+      .JWT_SECRET as string,
   };
   
   if (!env.NEXT_PUBLIC_GOOGLE_CLIENT_ID) {
@@ -36,4 +38,8 @@ export const env = {
     if (!env.NEXT_PUBLIC_STRAPI_ADMIN_TOKEN) {
       throw new Error("Missing NEXT_PUBLIC_STRAPI_ADMIN_TOKEN in environment variables");
     }
+
+    // if (!env.JWT_SECRET) {
+    //   throw new Error("Missing JWT_SECRET in environment variables");
+    // }
   

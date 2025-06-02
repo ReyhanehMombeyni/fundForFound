@@ -58,28 +58,6 @@
       "relation": "manyToMany",
       "target": "api::tag.tag",
       "mappedBy": "brand_orgs"
-    },
-    "user": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "plugin::users-permissions.user",
-      "inversedBy": "brand_orgs"
-    },
-    "isConfirmed": {
-      "type": "boolean",
-      "default": false,
-      "required": true
-    },
-    "confirmationToken": {
-      "type": "text",
-      "required": true,
-      "unique": true
-    },
-    "brand_socials": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::brand-social.brand-social",
-      "mappedBy": "brand_org"
     }
   }
 }

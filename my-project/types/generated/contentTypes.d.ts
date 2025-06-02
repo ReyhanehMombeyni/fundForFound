@@ -392,21 +392,11 @@ export interface ApiBrandOrgBrandOrg extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
-    brand_socials: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::brand-social.brand-social'
-    >;
     category: Schema.Attribute.Relation<'manyToOne', 'api::category.category'>;
-    confirmationToken: Schema.Attribute.Text &
-      Schema.Attribute.Required &
-      Schema.Attribute.Unique;
     country: Schema.Attribute.Relation<'manyToOne', 'api::country.country'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    isConfirmed: Schema.Attribute.Boolean &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<false>;
     locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -429,10 +419,6 @@ export interface ApiBrandOrgBrandOrg extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    user: Schema.Attribute.Relation<
-      'manyToOne',
-      'plugin::users-permissions.user'
-    >;
   };
 }
 
@@ -452,10 +438,6 @@ export interface ApiBrandSocialBrandSocial extends Struct.CollectionTypeSchema {
     };
   };
   attributes: {
-    brand_org: Schema.Attribute.Relation<
-      'manyToOne',
-      'api::brand-org.brand-org'
-    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1163,10 +1145,6 @@ export interface PluginUsersPermissionsUser
   };
   attributes: {
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
-    brand_orgs: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::brand-org.brand-org'
-    >;
     confirmationToken: Schema.Attribute.String & Schema.Attribute.Private;
     confirmed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     createdAt: Schema.Attribute.DateTime;

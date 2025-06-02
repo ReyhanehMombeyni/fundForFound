@@ -2,6 +2,8 @@
 
 import Footer from "../components/shared/Footer";
 import Navbar from "../components/shared/Navbar/Navbar";
+import Stepper from "./components/Stepper";
+import { PostFormProvider } from "./context/context";
 
 const layout = ({
   children,
@@ -11,7 +13,10 @@ const layout = ({
   return (
     <>
       <Navbar />
-      {children}
+      <PostFormProvider>
+        <Stepper />
+        {children}
+      </PostFormProvider>
       <Footer />
     </>
   );

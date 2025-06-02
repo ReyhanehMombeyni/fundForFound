@@ -25,12 +25,6 @@
       "relation": "manyToOne",
       "target": "api::social-media.social-media",
       "inversedBy": "brand_socials"
-    },
-    "brand_org": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::brand-org.brand-org",
-      "inversedBy": "brand_socials"
     }
   }
 }
