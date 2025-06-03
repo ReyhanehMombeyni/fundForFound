@@ -32,15 +32,6 @@
       "target": "api::subcategory.subcategory",
       "inversedBy": "brand_orgs"
     },
-    "about": {
-      "type": "blocks",
-      "required": false,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
     "category": {
       "type": "relation",
       "relation": "manyToOne",
@@ -58,6 +49,16 @@
       "relation": "manyToMany",
       "target": "api::tag.tag",
       "mappedBy": "brand_orgs"
+    },
+    "about": {
+      "type": "text",
+      "unique": true,
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }

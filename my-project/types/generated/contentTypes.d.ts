@@ -386,7 +386,9 @@ export interface ApiBrandOrgBrandOrg extends Struct.CollectionTypeSchema {
     };
   };
   attributes: {
-    about: Schema.Attribute.Blocks &
+    about: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
