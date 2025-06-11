@@ -1,14 +1,11 @@
 'use client'
 
 import { usePostForm } from '../../context/context'
-import dynamic from "next/dynamic";
 import SocialLinkSelector from './components/SocialLinkSelector';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
+import EditorBlock from './components/EditorBlock';
 
-const EditorBlock = dynamic(() => import("./components/EditorBlock"), {
-  ssr: false,
-});
 const Detailed = () => {
     const router= useRouter();
     const { state } = usePostForm();

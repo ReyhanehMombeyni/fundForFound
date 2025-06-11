@@ -9,6 +9,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { userSignup } from "@/types/users";
 import { useMutation } from "@tanstack/react-query";
 import GoogleButton from "@/app/components/shared/GoogleButton";
+import { useState } from "react";
 
 const schema = yup.object({
   username: yup.string().required().min(3),
@@ -17,6 +18,7 @@ const schema = yup.object({
 });
 
 const FormSignup = () => {
+  const [isSuccess, setIsSuccess]= useState<boolean>(false)
   const router = useRouter();
   const {
     register,
@@ -35,7 +37,7 @@ const FormSignup = () => {
       );
     },
     onSuccess: () => {
-      router.push("/auth/logIn");
+      setIsSuccess(true)
     },
     onError: (error) => {
       console.error("Login failed", error);
@@ -84,8 +86,11 @@ const FormSignup = () => {
             {errors.password && <div className='text-error font-light'>{errors.password.message}</div>}
           </div>
           <button type="submit" className="btn btn-primary">
-            Continue
+            Sign Up
           </button>
+          {
+            isSuccess && <p className="text-success">Go to your email inbox and confirm.</p>
+          }
         </form>
       </div>
     </div>

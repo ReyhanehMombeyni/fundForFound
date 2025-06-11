@@ -6,19 +6,19 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import * as yup from "yup";
 
-// const schema = yup.object({
-//   socialSelected: yup
-//     .array()
-//     .of(
-//       yup.object({
-//         name: yup.string().required(),
-//         documentId: yup.string().required(),
-//         baseUrl: yup.string().url().required(),
-//         customUrl: yup.string().required(),
-//       })
-//     )
-//     // .min(3),
-// });
+const schema = yup.object({
+  socialSelected: yup
+    .array()
+    .of(
+      yup.object({
+        name: yup.string().required(),
+        documentId: yup.string().required(),
+        baseUrl: yup.string().url().required(),
+        customUrl: yup.string().required(),
+      })
+    )
+    .min(3),
+});
 
 export default function SocialLinkSelector() {
   const [errors, setErrors] = useState<string | null>(null);
@@ -85,12 +85,12 @@ export default function SocialLinkSelector() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      // await schema.validate({ socialSelected }, { abortEarly: false });
+      await schema.validate({ socialSelected }, { abortEarly: false });
       setErrors(null);
       dispatch({ type: "SET_SOCIAL_DATA", payload: socialSelected });
-      if (state.editorData.blocks.length) {
+      router.push("/home/basic-info/detailed-info/approve");
+      if (state.editorData.length) {
         setErrors(null);
-        router.push("/home/basic-info/detailed-info/approve");
       } else {
         setErrors("Editor is Null.");
       }
@@ -168,7 +168,7 @@ export default function SocialLinkSelector() {
       <button
         type="submit"
         className="mt-4 bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded disabled:bg-gray-400 disabled:cursor-not-allowed"
-        // disabled={!socialSelected || socialSelected.length < 3}
+        disabled={!socialSelected || socialSelected.length < 3}
       >
         Save and Continue
       </button>

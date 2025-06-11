@@ -52,9 +52,9 @@ export default function GoogleCallbackPage() {
           console.error("Failed to fetch user data");
           return;
         }
-  
+        
         const res = await fetch(
-          `https://fundforfoun-strapi.onrender.com/api/users?filters[email][$eq]=${encodeURIComponent(
+          `${env.NEXT_PUBLIC_API_URL}/api/users?filters[email][$eq]=${encodeURIComponent(
             userData.email
           )}`,
           {
@@ -65,8 +65,8 @@ export default function GoogleCallbackPage() {
           }
         );
         const user = await res.json();
-  
-        if (user && user[0]?.email) {
+        
+        if (user?.data?.length > 0) {
           router.push("/auth/logIn");
         } else {
           const registerRes = await fetch(

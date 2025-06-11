@@ -8,11 +8,7 @@ export const initialState: StateType = {
       subCategory: "",
       selectedTags: [],
     },
-    editorData: {
-      time: 0,
-      blocks: [],
-      version: "",
-    },
+    editorData: "",
     socialData: [],
   };
   

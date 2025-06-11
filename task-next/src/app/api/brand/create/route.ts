@@ -15,16 +15,15 @@ export async function POST(req: NextRequest) {
   // const documentId = jwt.verify(token, env.JWT_SECRET) as { documentId: string };
   
   const bodyRequest = await req.json();
-  // console.log(bodyRequest);
+  console.log(bodyRequest);
   const {firstStep, editorData, socialData}= bodyRequest;
   const { name, country, category, subCategory, selectedTags } = firstStep;
   const selectedTagsDocId: string[] = selectedTags?.map((tag: Tag) => tag.documentId);
   const confirmationToken= "jhsbxjhbsajxbasjcbasjhbc";
   const isconfirmed= false;
-  const strapiContent = convertEditorJSToStrapiBlocks(editorData);
 
   try {
-    const res = await fetch(`http://localhost:1337/api/brand-orgs`, {
+    const res = await fetch(`${env.NEXT_PUBLIC_API_URL}/api/brand-orgs`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -40,12 +39,12 @@ export async function POST(req: NextRequest) {
           tags: {
             connect: selectedTagsDocId?.map((documentId) => ({ documentId })),
           },
-          // brand_socials: {
-          //   create: socialData.map((item) => ({
-          //     customUrl: item.customUrl,
-          //     social_media: item.documentId, // فرض بر اینکه این یک ID هست
-          //   })),
-          // },
+          brand_socials: {
+            create: socialData.map((item) => ({
+              customUrl: item.customUrl,
+              social_media: item.documentId, 
+            })),
+          },
           // confirmationToken,
           // isconfirmed,
           // user: { connect: [documentId] },

@@ -1,5 +1,4 @@
 import { Tag } from ".";
-import { OutputData } from "@editorjs/editorjs";
 
 export interface firstStep {
   name: string;
@@ -15,7 +14,7 @@ export interface socialItem {
 }
 export interface StateType {
     firstStep: firstStep;
-    editorData: OutputData;
+    editorData: string;
     socialData: socialItem[];
 }
 
@@ -26,7 +25,7 @@ export interface SetFirstStepAction {
 
 export interface SetEditorDataAction {
     type: "SET_EDITOR_DATA";
-    payload: OutputData;
+    payload: string;
 }
 
 export interface SetSocialDataAction {
